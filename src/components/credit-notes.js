@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { FaCheckCircle } from 'react-icons/fa';
 import AvailableCreditNotesTable from './available-credit-notes-table';
 import Modal from './modal';
 
@@ -35,9 +36,7 @@ export default function CreditNotes({ invoices, selectedInvoiceId, setSelectedCr
                 }
                 <Modal open={modalIsOpen} onClose={() => setModalIsOpen(false)}>
                     <div className='flex flex-col w-96 items-center gap-6'>
-                        <p>
-                            este deberia ser un green success tick
-                        </p>
+                        <FaCheckCircle className='text-green-500 text-4xl' />
                         <p className='font-semibold text-xl text-center w-64'>
                             Nota de credito asignada correctamente
                         </p>
