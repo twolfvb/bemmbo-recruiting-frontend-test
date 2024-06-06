@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import './App.css';
 import { getPendingInvoices } from './api/bemmbo.js';
-import ReceivedInvoicesTable from './received-invoices-table.js';
-import CreditNotes from './credit-notes.js';
+import ReceivedInvoicesTable from './components/received-invoices-table.js';
+import CreditNotes from './components/credit-notes.js';
 
 function App() {
 
