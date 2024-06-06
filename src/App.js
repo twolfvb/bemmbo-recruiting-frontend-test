@@ -1,8 +1,8 @@
+import { useState, useEffect } from 'react';
 import './App.css';
 import { getPendingInvoices } from './api/bemmbo.js';
 import ReceivedInvoicesTable from './received-invoices-table.js';
-import AvailableCreditNotesTable from './available-credit-notes-table.js';
-import { useState, useEffect } from 'react';
+import CreditNotes from './credit-notes.js';
 
 function App() {
 
@@ -33,19 +33,14 @@ function App() {
         />
       </div>
 
-      { selectedInvoiceId && (
         <div className='my-8 flex flex-col items-center'>
-
-          <p className="font-bold text-xl mb-8">
-            Selecciona una nota de credito
-          </p>
-          <AvailableCreditNotesTable
-            creditNotes={invoices.filter(invoice => invoice.type === 'credit_note' && invoice.reference === selectedInvoiceId)}
+        <CreditNotes
+          invoices={invoices}
+          selectedInvoiceId={selectedInvoiceId}
+          setSelectedCreditNote={setSelectedCreditNote}
             selectedCreditNote={selectedCreditNote}
-            setSelectedCreditNote={setSelectedCreditNote}
           />
         </div>
-      )}
     </div>
   );
 }
