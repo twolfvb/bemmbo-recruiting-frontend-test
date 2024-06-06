@@ -1,8 +1,18 @@
-function InvoiceRow({ invoice }) {
+import { useState } from 'react';
+
+function InvoiceRow({ invoice, isSelected, onSelect }) {
+    const handleRadioChange = (e) => {
+      // Prevent the event from propagating to the row's onClick handler
+      e.stopPropagation();
+      onSelect();
+    };
+
+
     return (
-      <tr className="text-gray-600">
-        <td>
-          <p className="text-gray-800 font-semibold text-left">
+      <tr className="text-gray-600 cursor-pointer" onClick={onSelect}>
+        <td className="flex flex-row items-center" >
+          <input type="radio" checked={isSelected} onChange={handleRadioChange}/>
+          <p className="text-gray-800 font-semibold text-left pl-4">
             {invoice.id}
             <span className="text-gray-600 font-normal"> ({invoice.organization_id}) </span>
           </p>
@@ -23,6 +33,8 @@ function InvoiceRow({ invoice }) {
   }
 
 function InvoiceTable({ invoices }) {
+    const [selectedInvoiceId, setSelectedInvoiceId] = useState(null);
+  
     return (
       <table className="bg-gray-100 rounded-lg">
         <tbody>
@@ -31,6 +43,10 @@ function InvoiceTable({ invoices }) {
                     <InvoiceRow
                       key={invoice.id}
                       invoice={invoice}
+                      isSelected={selectedInvoiceId === invoice.id}
+                      onSelect={() => {
+                        setSelectedInvoiceId(invoice.id)
+                      }}
                     />
                 ))
             }
