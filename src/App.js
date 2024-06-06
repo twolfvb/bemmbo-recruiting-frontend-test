@@ -17,14 +17,13 @@ function App() {
   const [selectedInvoiceId, setSelectedInvoiceId] = useState(null);
 
   return (
-    <div className="App">
-      <header className="App-header">
-          <ReceivedInvoicesTable
-            invoices={invoices.filter(invoice => invoice.type === 'received')}
-            selectedInvoiceId={selectedInvoiceId}
-            setSelectedInvoiceId={setSelectedInvoiceId}
-          />
-      </header>
+    <div className="flex min-h-screen flex-col items-center overflow-auto pt-32">
+
+      <ReceivedInvoicesTable
+        invoices={invoices.filter(invoice => invoice.type === 'received')}
+        selectedInvoiceId={selectedInvoiceId}
+        setSelectedInvoiceId={setSelectedInvoiceId}
+      />
     </div>
   );
 }
