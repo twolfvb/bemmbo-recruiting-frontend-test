@@ -38,10 +38,9 @@ function InvoiceRow({ invoice, isSelected, onSelect }) {
       </tr>
     );
   }
-
-function InvoiceTable({ invoices }) {
-    const [selectedInvoiceId, setSelectedInvoiceId] = useState(null);
   
+function InvoiceTable({ invoices, selectedInvoiceId, setSelectedInvoiceId }) {
+
     return (
       <table className="bg-gray-100 rounded-lg">
         <tbody>

@@ -1,6 +1,6 @@
-import logo from './logo.svg';
 import './App.css';
 import { getPendingInvoices } from './api/bemmbo.js';
+import ReceivedInvoicesTable from './received-invoices-table.js';
 import { useState, useEffect } from 'react';
 
 function App() {
@@ -14,21 +14,16 @@ function App() {
     fetchInvoices();
   }, []);
 
+  const [selectedInvoiceId, setSelectedInvoiceId] = useState(null);
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <div>
-          {JSON.stringify(invoices)}
-        </div>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+          <ReceivedInvoicesTable
+            invoices={invoices.filter(invoice => invoice.type === 'received')}
+            selectedInvoiceId={selectedInvoiceId}
+            setSelectedInvoiceId={setSelectedInvoiceId}
+          />
       </header>
     </div>
   );
