@@ -13,18 +13,18 @@ function InvoiceRow({ invoice, isSelected, onSelect }) {
 
 
     return (
-      <tr className={`text-gray-600 cursor-pointer ${isSelected ? 'bg-indigo-100' : ''}`} onClick={onSelect}>
+      <tr className={`cursor-pointer ${isSelected ? 'bg-indigo-100 text-indigo-800' : 'text-gray-600'}`} onClick={onSelect}>
         <td className="flex flex-row items-center py-4 px-4" >
           <input type="radio" checked={isSelected} onChange={handleRadioChange}/>
-          <p className="text-gray-800 font-bold text-left pl-4">
+          <p className={`font-bold text-left pl-4 ${isSelected ? 'text-indigo-800' : 'text-gray-800'}`}>
             {invoice.id}
-            <span className="text-gray-400 font-semibold"> ({invoice.organization_id}) </span>
+            <span className={`font-semibold ${isSelected ? 'text-indigo-600' : 'text-gray-400'}`}> ({invoice.organization_id}) </span>
           </p>
         </td>
         <td className="py-4 px-4">
           <p>
-            <span className="text-gray-600 font-bold"> ${round(clpAmount)} CLP </span>
-            <span className="text-gray-400 font-semibold"> (${round(usdAmount)} USD) </span>
+            <span className={`font-bold ${isSelected ? 'text-indigo-800' : 'text-gray-600'}`}> ${round(clpAmount)} CLP </span>
+            <span className={`font-semibold ${isSelected ? 'text-indigo-600' : 'text-gray-400'}`}> (${round(usdAmount)} USD) </span>
           </p>
         </td>
         <td className="py-4 px-4">
