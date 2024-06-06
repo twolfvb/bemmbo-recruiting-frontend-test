@@ -18,6 +18,9 @@ function App() {
 
   return (
     <div className="flex min-h-screen flex-col items-center overflow-auto pt-32">
+      <p className="font-bold text-xl mb-8">
+        Selecciona una factura
+      </p>
 
       <ReceivedInvoicesTable
         invoices={invoices.filter(invoice => invoice.type === 'received')}
