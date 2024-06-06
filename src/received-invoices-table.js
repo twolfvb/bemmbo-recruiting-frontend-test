@@ -18,7 +18,7 @@ function InvoiceRow({ invoice, isSelected, onSelect }) {
 
 
     return (
-      <tr className="text-gray-600 cursor-pointer" onClick={onSelect}>
+      <tr className={`text-gray-600 cursor-pointer ${isSelected ? 'bg-indigo-100' : ''}`} onClick={onSelect}>
         <td className="flex flex-row items-center py-4 px-4" >
           <input type="radio" checked={isSelected} onChange={handleRadioChange}/>
           <p className="text-gray-800 font-bold text-left pl-4">
