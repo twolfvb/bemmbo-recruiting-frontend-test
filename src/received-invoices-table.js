@@ -19,46 +19,48 @@ function InvoiceRow({ invoice, isSelected, onSelect }) {
 
     return (
       <tr className="text-gray-600 cursor-pointer" onClick={onSelect}>
-        <td className="flex flex-row items-center" >
+        <td className="flex flex-row items-center py-4 px-4" >
           <input type="radio" checked={isSelected} onChange={handleRadioChange}/>
-          <p className="text-gray-800 font-semibold text-left pl-4">
+          <p className="text-gray-800 font-bold text-left pl-4">
             {invoice.id}
-            <span className="text-gray-600 font-normal"> ({invoice.organization_id}) </span>
+            <span className="text-gray-400 font-semibold"> ({invoice.organization_id}) </span>
           </p>
         </td>
-        <td>
+        <td className="py-4 px-4">
           <p>
-            <span className="text-gray-600 font-normal"> ${round(clpAmount)} CLP </span>
-            <span className="text-gray-600 font-normal"> (${round(usdAmount)} USD) </span>
+            <span className="text-gray-600 font-bold"> ${round(clpAmount)} CLP </span>
+            <span className="text-gray-400 font-semibold"> (${round(usdAmount)} USD) </span>
           </p>
         </td>
-        <td>
+        <td className="py-4 px-4">
           {invoice.type}
         </td>
       </tr>
     );
   }
   
-function InvoiceTable({ invoices, selectedInvoiceId, setSelectedInvoiceId }) {
+function ReceivedInvoicesTable({ invoices, selectedInvoiceId, setSelectedInvoiceId }) {
 
     return (
-      <table className="bg-gray-100 rounded-lg">
-        <tbody>
-            {invoices.length > 0 && 
-                invoices.map(invoice => (
-                    <InvoiceRow
-                      key={invoice.id}
-                      invoice={invoice}
-                      isSelected={selectedInvoiceId === invoice.id}
-                      onSelect={() => {
-                        setSelectedInvoiceId(invoice.id)
-                      }}
-                    />
-                ))
-            }
-        </tbody>
-      </table>
+      <div className="bg-white rounded-lg border border-gray-200">
+        <table>
+          <tbody className="divide-y">
+              {invoices.length > 0 && 
+                  invoices.map(invoice => (
+                      <InvoiceRow
+                        key={invoice.id}
+                        invoice={invoice}
+                        isSelected={selectedInvoiceId === invoice.id}
+                        onSelect={() => {
+                          setSelectedInvoiceId(invoice.id)
+                        }}
+                      />
+                  ))
+              }
+          </tbody>
+        </table>
+      </div>
     );
 }
 
-export default InvoiceTable;
+export default ReceivedInvoicesTable;
