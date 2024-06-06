@@ -1,4 +1,10 @@
-import { useState } from 'react';
+const USD_TO_CLP = 920;
+
+
+function round(value, precision) {
+  var multiplier = Math.pow(10, precision || 0);
+  return Math.round(value * multiplier) / multiplier;
+}
 
 function InvoiceRow({ invoice, isSelected, onSelect }) {
     const handleRadioChange = (e) => {
@@ -6,6 +12,9 @@ function InvoiceRow({ invoice, isSelected, onSelect }) {
       e.stopPropagation();
       onSelect();
     };
+
+    const clpAmount = invoice.currency === 'USD' ? invoice.amount * USD_TO_CLP : invoice.amount;
+    const usdAmount = invoice.currency === 'CLP' ? invoice.amount / USD_TO_CLP : invoice.amount;
 
 
     return (
@@ -19,10 +28,8 @@ function InvoiceRow({ invoice, isSelected, onSelect }) {
         </td>
         <td>
           <p>
-            {invoice.amount}
-            <span>
-              <span className="text-gray-600 font-normal"> {invoice.currency} </span>
-            </span>
+            <span className="text-gray-600 font-normal"> ${round(clpAmount)} CLP </span>
+            <span className="text-gray-600 font-normal"> (${round(usdAmount)} USD) </span>
           </p>
         </td>
         <td>
