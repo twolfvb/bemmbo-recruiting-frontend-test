@@ -1,10 +1,5 @@
-const USD_TO_CLP = 920;
-
-
-function round(value, precision) {
-  var multiplier = Math.pow(10, precision || 0);
-  return Math.round(value * multiplier) / multiplier;
-}
+import { USD_TO_CLP } from '../utils/currency';
+import round from '../utils/round';
 
 function InvoiceRow({ invoice, isSelected, onSelect }) {
     const handleRadioChange = (e) => {
