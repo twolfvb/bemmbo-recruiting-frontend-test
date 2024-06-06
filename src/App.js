@@ -18,6 +18,10 @@ function App() {
   const [selectedInvoiceId, setSelectedInvoiceId] = useState(null);
   const [selectedCreditNote, setSelectedCreditNote] = useState(null);
 
+  useEffect(() => {
+    setSelectedCreditNote(null);
+  }, [selectedInvoiceId]);
+
   return (
     <div className="flex min-h-screen flex-col items-center overflow-auto pt-32">
 
@@ -33,14 +37,14 @@ function App() {
         />
       </div>
 
-        <div className='my-8 flex flex-col items-center'>
+      <div className='my-8 flex flex-col items-center'>
         <CreditNotes
           invoices={invoices}
           selectedInvoiceId={selectedInvoiceId}
           setSelectedCreditNote={setSelectedCreditNote}
-            selectedCreditNote={selectedCreditNote}
-          />
-        </div>
+          selectedCreditNote={selectedCreditNote}
+        />
+      </div>
     </div>
   );
 }
